@@ -9,7 +9,7 @@ namespace StreetCountryWebApp.Repo
     {
         void Add(Street street);
         void Delete(int id);
-        void Update(int id, Street street);
+        void Update(Street street);
         Street Find(int id);
         List<Street> GetAll();
         Country GetCountryForStreet(int id);
@@ -53,13 +53,13 @@ namespace StreetCountryWebApp.Repo
             return context.Streets.ToList();
         }
 
-        public void Update(int id, Street street)
+        public void Update(Street street)
         {
             try
             {
                 if (IsValid(street))
                 {
-                    var streetToUpdate = Find(id);
+                    var streetToUpdate = Find(street.Id);
 
                     streetToUpdate.Name = street.Name;
                     streetToUpdate.CountryId = street.CountryId;

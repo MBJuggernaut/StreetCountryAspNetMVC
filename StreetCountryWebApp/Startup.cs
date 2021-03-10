@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StreetCountryWebApp.Models;
+using StreetCountryWebApp.Repo;
 
 namespace StreetCountryWebApp
 {
@@ -20,7 +21,9 @@ namespace StreetCountryWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
+            
             services.AddDbContext<DBContext>(options => options.UseSqlServer(connection));
+            services.AddScoped<IStreetRepository, StreetRepository>();
             services.AddControllersWithViews();
         }
 

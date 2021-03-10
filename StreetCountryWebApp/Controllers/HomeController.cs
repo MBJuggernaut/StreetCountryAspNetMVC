@@ -1,32 +1,44 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StreetCountryWebApp.Models;
+using StreetCountryWebApp.Repo;
 using System.Linq;
 
 namespace StreetCountryWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        public DBContext context;
-        public HomeController(DBContext context)
+        public IStreetRepository repository;
+        public HomeController(IStreetRepository repository)
         {
-            this.context = context;
+            this.repository = repository;
         }
         public IActionResult Index()
         {
-            return View(context.Streets.ToList());
+            return View(repository.GetAll());
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            try
+            {
+                Street street = repository.Find(id);
+                return View(street);
+            }
+            catch
+            {
+                return NotFound();
+            }
         }
 
         [HttpPost]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(Street street)
         {
-            throw new System.NotImplementedException();
+            repository.Update(street);
+            return RedirectToAction("Index");
         }
-        [HttpPut]
-        public string Edit()
-        {
-            throw new System.NotImplementedException();
-        }
-        [HttpDelete]        
+
+        [HttpDelete]
         public IActionResult Delete(int id)
         {
             throw new System.NotImplementedException();
