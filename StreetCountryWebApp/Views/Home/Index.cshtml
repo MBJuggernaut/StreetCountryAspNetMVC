@@ -1,0 +1,32 @@
+﻿@model IEnumerable<StreetCountryWebApp.Models.Street>
+@{
+    ViewData["Title"] = "Список улиц";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>StreetCountryWebApp</title>
+</head>
+<body>
+    <h3>Streets</h3>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Country</td>
+            <td></td>
+        </tr>
+        @foreach (var street in Model)
+        {
+            <tr>
+                <td>@street.Id</td>
+                <td>@street.Name</td>
+                <td>@street.CountryId</td>
+                <td><a href="~/Home/Buy/@street.Id">Купить</a></td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
