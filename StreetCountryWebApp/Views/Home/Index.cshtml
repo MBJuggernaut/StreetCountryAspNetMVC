@@ -15,17 +15,18 @@
         <tr>
             <td>ID</td>
             <td>Name</td>
-            <td>Country</td>
+            <td>CountryId</td>
             <td></td>
         </tr>
         @foreach (var street in Model)
         {
-            <tr>
-                <td>@street.Id</td>
-                <td>@street.Name</td>
-                <td>@street.CountryId</td>
-                <td><a href="~/Home/Buy/@street.Id">Купить</a></td>
-            </tr>
+    <tr>
+        <td>@street.Id</td>
+        <td>@street.Name</td>
+        <td>@street.CountryId</td>
+        <td><a href="~/Home/Edit/@street.Id">Edit</a></td>
+        <td><a href="~/Home/Delete/@street.Id">Delete</a></td>
+    </tr>
         }
     </table>
 </body>

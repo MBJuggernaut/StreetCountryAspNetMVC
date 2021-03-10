@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using StreetCountryWebApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace StreetCountryWebApp.Controllers
 {
@@ -19,6 +14,22 @@ namespace StreetCountryWebApp.Controllers
         public IActionResult Index()
         {
             return View(context.Streets.ToList());
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+        [HttpPut]
+        public string Edit()
+        {
+            throw new System.NotImplementedException();
+        }
+        [HttpDelete]        
+        public IActionResult Delete(int id)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StreetCountryWebApp.Models;
-using System;
 
 namespace StreetCountryWebApp
 {
@@ -19,10 +18,10 @@ namespace StreetCountryWebApp
                     Seeder seeder = new Seeder(context);
                     seeder.Seed();
                 }
-                catch (Exception ex)
+                catch
                 {
-                    //do something, logging maybe
-                    string s = ex.Message;
+                    //log it
+                    throw;
                 }                
             }
 
