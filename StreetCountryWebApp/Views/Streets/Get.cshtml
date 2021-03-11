@@ -10,7 +10,7 @@
     <title>StreetCountryWebApp</title>
 </head>
 <body>
-    <form asp-controller="Home" asp-action="Index">
+    <form asp-controller="Streets" asp-action="Get">
         <p>
             Title: <input type="text" name="search" />
             <input type="submit" value="Find" />
@@ -30,8 +30,8 @@
                 <td>@street.Id</td>
                 <td>@street.Name</td>
                 <td>@street.CountryId</td>
-                <td><a href="~/Home/Edit/@street.Id">Edit</a></td>
-                <td><a href="~/Home/Delete/@street.Id">Delete</a></td>
+                <td><a href="~/Streets/Edit/@street.Id">Edit</a></td>
+                <td><a href="~/Streets/Delete/@street.Id">Delete</a></td>
             </tr>
         }
     </table>

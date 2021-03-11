@@ -4,15 +4,15 @@ using StreetCountryWebApp.Repo;
 
 namespace StreetCountryWebApp.Controllers
 {
-    public class HomeController : Controller
+    public class StreetsController : Controller
     {
         public IStreetRepository repository;
-        public HomeController(IStreetRepository repository)
+        public StreetsController(IStreetRepository repository)
         {
             this.repository = repository;
         }
 
-        public IActionResult Index(string search)
+        public IActionResult Get(string search)
         {
             if(string.IsNullOrEmpty(search))
             return View(repository.GetAll());
@@ -38,7 +38,7 @@ namespace StreetCountryWebApp.Controllers
         public IActionResult Edit(Street street)
         {
             repository.Update(street);
-            return RedirectToAction("Index");
+            return RedirectToAction("Get");
         }
 
         [HttpGet]
@@ -61,7 +61,7 @@ namespace StreetCountryWebApp.Controllers
             try
             {
                 repository.Delete(id);
-                return RedirectToAction("Index");
+                return RedirectToAction("Get");
             }
             catch
             {

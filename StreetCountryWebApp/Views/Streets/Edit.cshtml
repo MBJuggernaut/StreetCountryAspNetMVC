@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Street Editing";
 }
-<form asp-action="edit" asp-controller="home" asp-route-id="@Model.Id">
+<form asp-action="edit" asp-controller="Streets" asp-route-id="@Model.Id">
     <div class="form-group">
         <label asp-for="Name" class="control-label">Name</label>
         <input type="text" asp-for="Name" class="form-control" />
