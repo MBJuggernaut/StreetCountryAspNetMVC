@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<StreetCountryWebApp.Models.Street>
 @{
-    ViewData["Title"] = "Список улиц";
+    ViewData["Title"] = "List of streets";
     Layout = null;
 }
 <!DOCTYPE html>
@@ -10,6 +10,12 @@
     <title>StreetCountryWebApp</title>
 </head>
 <body>
+    <form asp-controller="Home" asp-action="Index">
+        <p>
+            Title: <input type="text" name="search" />
+            <input type="submit" value="Find" />
+        </p>
+    </form>
     <h3>Streets</h3>
     <table>
         <tr>
@@ -20,13 +26,13 @@
         </tr>
         @foreach (var street in Model)
         {
-    <tr>
-        <td>@street.Id</td>
-        <td>@street.Name</td>
-        <td>@street.CountryId</td>
-        <td><a href="~/Home/Edit/@street.Id">Edit</a></td>
-        <td><a href="~/Home/Delete/@street.Id">Delete</a></td>
-    </tr>
+            <tr>
+                <td>@street.Id</td>
+                <td>@street.Name</td>
+                <td>@street.CountryId</td>
+                <td><a href="~/Home/Edit/@street.Id">Edit</a></td>
+                <td><a href="~/Home/Delete/@street.Id">Delete</a></td>
+            </tr>
         }
     </table>
 </body>

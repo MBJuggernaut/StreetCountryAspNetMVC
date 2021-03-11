@@ -39,6 +39,11 @@ namespace StreetCountryWebApp.Repo
             }
         }
 
+        public List<Street> GetByString(string search)
+        {
+            return context.Streets.Where(x => x.Name.Contains(search)).ToList();
+        }
+
         public List<Street> GetAll()
         {
             return context.Streets.ToList();

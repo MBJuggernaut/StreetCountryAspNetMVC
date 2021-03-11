@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StreetCountryWebApp.Models;
 using StreetCountryWebApp.Repo;
-using System.Linq;
 
 namespace StreetCountryWebApp.Controllers
 {
@@ -12,9 +11,14 @@ namespace StreetCountryWebApp.Controllers
         {
             this.repository = repository;
         }
-        public IActionResult Index()
+
+        public IActionResult Index(string search)
         {
+            if(string.IsNullOrEmpty(search))
             return View(repository.GetAll());
+
+            else 
+                return View(repository.GetByString(search));
         }
 
         [HttpGet]
@@ -30,7 +34,6 @@ namespace StreetCountryWebApp.Controllers
                 return NotFound();
             }
         }
-
         [HttpPost]
         public IActionResult Edit(Street street)
         {
