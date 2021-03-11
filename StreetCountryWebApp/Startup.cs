@@ -39,7 +39,7 @@ namespace StreetCountryWebApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Streets}/{action=Get}/{id?}");
+                    pattern: "{controller=Streets}/{action=Show}/{id?}");
             });
         }
     }

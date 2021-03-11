@@ -12,7 +12,7 @@ namespace StreetCountryWebApp.Controllers
             this.repository = repository;
         }
 
-        public IActionResult Get(string search)
+        public IActionResult Show(string search)
         {
             if(string.IsNullOrEmpty(search))
             return View(repository.GetAll());
@@ -38,7 +38,7 @@ namespace StreetCountryWebApp.Controllers
         public IActionResult Edit(Street street)
         {
             repository.Update(street);
-            return RedirectToAction("Get");
+            return RedirectToAction("Show");
         }
 
         [HttpGet]
@@ -59,7 +59,7 @@ namespace StreetCountryWebApp.Controllers
         public IActionResult Delete(int id)
         {
             repository.Delete(id);
-            return RedirectToAction("Get");
+            return RedirectToAction("Show");
         }
 
         public IActionResult Create()
@@ -70,7 +70,7 @@ namespace StreetCountryWebApp.Controllers
         public IActionResult Create(Street street)
         {
             repository.Add(street);
-            return RedirectToAction("Get");
+            return RedirectToAction("Show");
         }
     }
 }
