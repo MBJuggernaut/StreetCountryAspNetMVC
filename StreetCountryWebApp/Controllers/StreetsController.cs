@@ -58,15 +58,19 @@ namespace StreetCountryWebApp.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            try
-            {
-                repository.Delete(id);
-                return RedirectToAction("Get");
-            }
-            catch
-            {
-                return NotFound();
-            }
+            repository.Delete(id);
+            return RedirectToAction("Get");
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(Street street)
+        {
+            repository.Add(street);
+            return RedirectToAction("Get");
         }
     }
 }
