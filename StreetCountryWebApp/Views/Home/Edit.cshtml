@@ -1,6 +1,6 @@
 ﻿@model StreetCountryWebApp.Models.Street
 @{
-    ViewBag.Title = "Редактирование улицы";
+    ViewBag.Title = "Street Editing";
 }
 <form asp-action="edit" asp-controller="home" asp-route-id="@Model.Id">
     <div class="form-group">
@@ -12,6 +12,6 @@
         <input type="number" asp-for="CountryId" class="form-control" />
     </div>
     <div class="form-group">
-        <input type="submit" value="Сохранить" class="btn btn-default" />
+        <input type="submit" value="Save Changes" class="btn btn-default" />
     </div>
 </form>
