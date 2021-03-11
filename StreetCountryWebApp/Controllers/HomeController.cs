@@ -38,10 +38,32 @@ namespace StreetCountryWebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpDelete]
+        [HttpGet]
+        [ActionName("Delete")]
+        public IActionResult ConfirmDelete(int id)
+        {
+            try
+            {
+                Street street = repository.Find(id);
+                return View(street);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+        [HttpPost]
         public IActionResult Delete(int id)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                repository.Delete(id);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return NotFound();
+            }
         }
     }
 }
