@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StreetCountryWebApp.Repo
+namespace StreetCountryWebApp.Services
 {
     public static class MyValidator
     {

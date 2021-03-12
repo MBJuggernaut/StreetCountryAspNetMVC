@@ -1,24 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StreetCountryWebApp.Models;
 using StreetCountryWebApp.Repo;
+using StreetCountryWebApp.Services;
 
 namespace StreetCountryWebApp.Controllers
 {
     public class StreetsController : Controller
     {
-        public IStreetRepository repository;
-        public StreetsController(IStreetRepository repository)
+        public IService<Street> service;
+        public StreetsController(IService<Street> service)
         {
-            this.repository = repository;
+            this.service = service;
         }
 
         public IActionResult Show(string search)
         {
-            if(string.IsNullOrEmpty(search))
-            return View(repository.GetAll());
+            var streets = service.Read(search);
+            return View(streets);
 
-            else 
-                return View(repository.GetByString(search));
         }
 
         [HttpGet]
@@ -26,7 +25,7 @@ namespace StreetCountryWebApp.Controllers
         {
             try
             {
-                Street street = repository.Find(id);
+                Street street = service.Read(id);
                 return View(street);
             }
             catch
@@ -37,7 +36,7 @@ namespace StreetCountryWebApp.Controllers
         [HttpPost]
         public IActionResult Edit(Street street)
         {
-            repository.Update(street);
+            service.Update(street);
             return RedirectToAction("Show");
         }
 
@@ -47,7 +46,7 @@ namespace StreetCountryWebApp.Controllers
         {
             try
             {
-                Street street = repository.Find(id);
+                Street street = service.Read(id);
                 return View(street);
             }
             catch
@@ -58,7 +57,7 @@ namespace StreetCountryWebApp.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            repository.Delete(id);
+            service.Delete(id);
             return RedirectToAction("Show");
         }
 
@@ -69,7 +68,7 @@ namespace StreetCountryWebApp.Controllers
         [HttpPost]
         public IActionResult Create(Street street)
         {
-            repository.Add(street);
+            service.Create(street);
             return RedirectToAction("Show");
         }
     }
