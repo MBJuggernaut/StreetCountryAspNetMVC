@@ -9,8 +9,7 @@ namespace StreetCountryWebApp.Repo
         void Delete(int id);
         void Update(Street street);
         Street Find(int id);
-        List<Street> GetByString(string search);
-        List<Street> GetAll();
-        Country GetCountryForStreet(int id);
+        List<Street> GetByName(string pattern);
+        List<Street> GetAll();        
     }
 }

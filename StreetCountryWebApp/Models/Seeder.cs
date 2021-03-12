@@ -14,12 +14,16 @@ namespace StreetCountryWebApp.Models
         {
             if (!context.Streets.Any() && !context.Countrys.Any())
             {
-                Country country = new Country() { Name = "TestCountry" };
-                Street street = new Street() { Name = "TestStreet", CountryId = 1 };
-                Street street2 = new Street() { Name = "TestStreet2", CountryId = 1 };
-
+                var country = new Country() { Name = "TestCountry" };
                 context.Countrys.Add(country);
-                context.Streets.AddRange(street, street2);                
+                context.SaveChanges();
+
+                var id = context.Countrys.First().Id;
+
+                var street = new Street() { Name = "TestStreet", CountryId = id };
+                var street2 = new Street() { Name = "TestStreet2", CountryId = id };
+
+                context.Streets.AddRange(street, street2);
 
                 context.SaveChanges();
             }

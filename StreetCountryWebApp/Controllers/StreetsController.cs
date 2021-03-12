@@ -12,7 +12,7 @@ namespace StreetCountryWebApp.Controllers
             this.service = service;
         }
 
-        public IActionResult Show(string pattern) //
+        public IActionResult Search(string pattern) //
         {
             var streets = service.Read(pattern);
             return View(streets);
@@ -35,7 +35,7 @@ namespace StreetCountryWebApp.Controllers
         public IActionResult Edit(Street street)
         {
             service.Update(street);
-            return RedirectToAction("Show");
+            return RedirectToAction(nameof(Search));
         }
 
         [HttpGet]
@@ -44,7 +44,7 @@ namespace StreetCountryWebApp.Controllers
         {
             try
             {
-                Street street = service.Read(id);
+                var street = service.Read(id);
                 return View(street);
             }
             catch
@@ -56,7 +56,7 @@ namespace StreetCountryWebApp.Controllers
         public IActionResult Delete(int id)
         {
             service.Delete(id);
-            return RedirectToAction("Show");
+            return RedirectToAction(nameof(Search));
         }
 
         public IActionResult Create()
@@ -67,7 +67,7 @@ namespace StreetCountryWebApp.Controllers
         public IActionResult Create(Street street)
         {
             service.Create(street);
-            return RedirectToAction("Show");
+            return RedirectToAction(nameof(Search));
         }
     }
 }

@@ -27,9 +27,9 @@ namespace StreetCountryWebApp.Repo
             context.SaveChanges();
         }
 
-        public List<Street> GetByString(string search)
+        public List<Street> GetByName(string pattern)
         {
-            return context.Streets.Where(x => x.Name.Contains(search)).ToList();
+            return context.Streets.Where(x => x.Name.Contains(pattern)).ToList();
         }
 
         public List<Street> GetAll()
@@ -44,13 +44,6 @@ namespace StreetCountryWebApp.Repo
             streetToUpdate.Name = street.Name;
             streetToUpdate.CountryId = street.CountryId;
             context.SaveChanges();
-        }
-
-        public Country GetCountryForStreet(int id)
-        {
-            var street = Find(id);
-
-            return context.Countrys.FirstOrDefault(x => x.Id == street.CountryId);
         }
 
         public Street Find(int id)

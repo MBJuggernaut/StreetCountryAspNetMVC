@@ -25,7 +25,7 @@ namespace StreetCountryWebApp.Services
         {
             if (string.IsNullOrEmpty(searchString))
                 return repository.GetAll();
-            else return repository.GetByString(searchString);
+            else return repository.GetByName(searchString);
         }
 
         public Street Read(int id)
