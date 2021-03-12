@@ -55,14 +55,8 @@ namespace StreetCountryWebApp.Repo
 
         public Street Find(int id)
         {
-            var streetToReturn = context.Streets.FirstOrDefault(x => x.Id == id);
-
-            if (streetToReturn != null)
-            {
-                return streetToReturn;
-            }
-
-            else throw new Exception("Not found");
+            var street = context.Streets.FirstOrDefault(x => x.Id == id);
+            return street ?? throw new Exception("Not found");                        
         }
 
 

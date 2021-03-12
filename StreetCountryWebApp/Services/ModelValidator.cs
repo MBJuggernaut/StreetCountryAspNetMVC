@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace StreetCountryWebApp.Services
 {
-    public static class MyValidator
+    public static class ModelValidator
     {
-        public static List<string> Validate<T>(T obj) where T : class
+        public static bool IsValid<T>(this T obj, out List<string> errors) where T : class
         {
+            errors = new List<string>();
+            if (obj == null)
+                return false;
+
             var validationResults = new List<ValidationResult>();
             var context = new ValidationContext(obj);
-            var errors = new List<string>();
+
             if (!Validator.TryValidateObject(obj, context, validationResults, true))
             {
                 foreach (var error in validationResults)
@@ -20,7 +24,7 @@ namespace StreetCountryWebApp.Services
                     errors.Add(error.ErrorMessage);
                 }
             }
-            return errors;
+            return errors.Count == 0;
         }
     }
 }

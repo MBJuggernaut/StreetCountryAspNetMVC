@@ -12,11 +12,10 @@ namespace StreetCountryWebApp.Controllers
             this.service = service;
         }
 
-        public IActionResult Show(string search)
+        public IActionResult Show(string pattern) //
         {
-            var streets = service.Read(search);
+            var streets = service.Read(pattern);
             return View(streets);
-
         }
 
         [HttpGet]
@@ -24,7 +23,7 @@ namespace StreetCountryWebApp.Controllers
         {
             try
             {
-                Street street = service.Read(id);
+                var street = service.Read(id);
                 return View(street);
             }
             catch

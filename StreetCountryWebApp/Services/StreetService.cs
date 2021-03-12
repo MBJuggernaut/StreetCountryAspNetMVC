@@ -15,17 +15,9 @@ namespace StreetCountryWebApp.Services
 
         public void Create(Street street)
         {
-            try
+            if (IsValid(street))
             {
-                if (IsValid(street))
-                {
-                    repository.Add(street);
-                }
-            }
-            catch
-            {
-                //log it
-                throw;
+                repository.Add(street);
             }
         }
 
@@ -43,39 +35,23 @@ namespace StreetCountryWebApp.Services
 
         public void Delete(int id)
         {
-            try
-            {
-                repository.Delete(id);
-            }
-            catch
-            {
-                //log it
-                throw;
-            }
+            repository.Delete(id);
         }
 
         public void Update(Street street)
         {
-            try
+            if (IsValid(street))
             {
-                if (IsValid(street))
-                {
-                    repository.Update(street);
-                }
+                repository.Update(street);
             }
-            catch
-            {
-                //log it
-                throw;
-            }
-        }        
+        }
 
         public bool IsValid(Street street)
         {
-            bool result = street != null && MyValidator.Validate(street).Count == 0;
+            if (street.IsValid(out _))
+                return true;
 
-            if (result) return true;
-            else throw new Exception("Переданный объект не прошел валидацию");
+            throw new Exception("Переданный объект не прошел валидацию");
         }
 
 
