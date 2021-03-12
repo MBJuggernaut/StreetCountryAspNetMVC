@@ -1,4 +1,5 @@
-﻿using StreetCountryWebApp.Repo;
+﻿using StreetCountryWebApp.Models;
+using StreetCountryWebApp.Repo;
 using System;
 using System.Collections.Generic;
 
@@ -6,8 +7,8 @@ namespace StreetCountryWebApp.Services
 {
     public class StreetService : IStreetService
     {
-        private readonly StreetRepository repository;
-        public StreetService(StreetRepository repository)
+        private readonly IStreetRepository repository;
+        public StreetService(IStreetRepository repository)
         {
             this.repository = repository;
         }

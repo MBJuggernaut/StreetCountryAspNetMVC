@@ -6,8 +6,8 @@ namespace StreetCountryWebApp.Controllers
 {
     public class StreetsController : Controller
     {
-        public IService<Street> service;
-        public StreetsController(IService<Street> service)
+        public IStreetService service;
+        public StreetsController(IStreetService service)
         {
             this.service = service;
         }

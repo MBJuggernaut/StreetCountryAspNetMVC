@@ -1,4 +1,5 @@
 ﻿using StreetCountryWebApp.Models;
+using System.Collections.Generic;
 
 namespace StreetCountryWebApp.Services
 {
@@ -11,3 +12,4 @@ namespace StreetCountryWebApp.Services
         void Update(Street street);
         bool IsValid(Street street);
     }
+}
