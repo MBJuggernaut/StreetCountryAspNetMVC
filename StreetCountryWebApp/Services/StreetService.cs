@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace StreetCountryWebApp.Services
 {
-    public class StreetService<Street> : IService<Models.Street>
+    public class StreetService : IStreetService
     {
         private readonly StreetRepository repository;
         public StreetService(StreetRepository repository)
@@ -12,7 +12,7 @@ namespace StreetCountryWebApp.Services
             this.repository = repository;
         }
 
-        public void Create(Models.Street street)
+        public void Create(Street street)
         {
             try
             {
@@ -28,14 +28,14 @@ namespace StreetCountryWebApp.Services
             }
         }
 
-        public List<Models.Street> Read(string searchString)
+        public List<Street> Read(string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
                 return repository.GetAll();
             else return repository.GetByString(searchString);
         }
 
-        public Models.Street Read(int id)
+        public Street Read(int id)
         {
             return repository.Find(id);
         }
@@ -53,7 +53,7 @@ namespace StreetCountryWebApp.Services
             }
         }
 
-        public void Update(Models.Street street)
+        public void Update(Street street)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace StreetCountryWebApp.Services
             }
         }        
 
-        public bool IsValid(Models.Street street)
+        public bool IsValid(Street street)
         {
             bool result = street != null && MyValidator.Validate(street).Count == 0;
 
